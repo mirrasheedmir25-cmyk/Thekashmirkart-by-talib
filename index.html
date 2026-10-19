@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123c2b">
+<title>Emminerrr Kashmir Kart</title>
+<style>
+:root{--g:#123c2b;--g2:#246744;--gold:#efc46a;--bg:#f4f7f3;--line:#dfe7df;--muted:#68756c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#17251b;font-family:Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{background:var(--g);color:white;position:sticky;top:0;z-index:5;box-shadow:0 3px 12px #0002}
+.wrap{max-width:1250px;margin:auto;padding:12px 16px}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;cursor:pointer;font-weight:800;font-size:17px}
+.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--gold);color:var(--g);font-size:24px}
+.search{display:flex;flex:1;min-width:210px}
+.search input{min-width:0;border:0;padding:13px;border-radius:8px 0 0 8px;flex:1}
+.search button{border:0;background:var(--gold);padding:0 15px;border-radius:0 8px 8px 0;font-weight:bold}
+.hbtn{background:#ffffff12;color:white;border:1px solid #ffffff55;padding:10px;border-radius:8px}
+nav{display:flex;gap:7px;overflow:auto;padding-top:12px}
+nav button{white-space:nowrap;background:transparent;border:1px solid #ffffff40;color:white;border-radius:25px;padding:8px 12px}
+main{max-width:1250px;margin:auto;padding:18px 16px 40px}
+.hero{padding:30px;border-radius:18px;background:linear-gradient(120deg,#123c2b,#327b51);color:white;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.hero h1{font-size:clamp(27px,5vw,44px);margin:12px 0}
+.hero p{line-height:1.6;max-width:650px;color:#e2eee4}
+.heroArt{font-size:85px}
+.btn{border:0;border-radius:8px;background:var(--gold);color:#183622;font-weight:bold;padding:11px 14px}
+.btn.dark{background:var(--g);color:white}
+.btn.soft{background:#edf3ed;color:var(--g)}
+.btn.red{background:#ffeded;color:#a31f2b}
+h2{font-size:23px}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:25px 0 12px}
+.head h2{margin:0}
+.muted{color:var(--muted);font-size:13px}
+.categories{display:flex;gap:10px;overflow:auto;padding:4px 0 10px}
+.cat{min-width:95px;padding:12px;background:white;border:1px solid var(--line);border-radius:12px;text-align:center}
+.cat span{display:block;font-size:25px;margin-bottom:6px}
+.cat.active{border:2px solid var(--g);background:#eaf4ec}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+select,input,textarea{padding:10px;border:1px solid var(--line);border-radius:8px;background:white;max-width:100%}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.card{background:white;border:1px solid var(--line);border-radius:13px;overflow:hidden;min-width:0}
+.card:hover{box-shadow:0 5px 18px #0001}
+.pic{width:100%;height:170px;object-fit:cover;display:block;background:#e8eee7;cursor:pointer}
+.body{padding:11px}
+.pname{font-weight:bold;cursor:pointer;line-height:1.35}
+.pname:hover{color:var(--g2)}
+.price{font-size:20px;font-weight:800;color:var(--g);margin:9px 0}
+.tag{font-size:11px;background:#eaf4ec;color:#22583a;border-radius:5px;padding:4px 6px;display:inline-block}
+.actions{display:flex;gap:6px;margin-top:10px}
+.actions button{flex:1;padding:9px 4px;font-size:12px}
+.heart{flex:0 0 36px!important}
+.panel{background:white;border:1px solid var(--line);border-radius:13px;padding:17px;margin:15px 0}
+.hidden{display:none!important}
+.empty{text-align:center;padding:30px;color:var(--muted);background:white;border-radius:12px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.formgrid .full{grid-column:1/-1}
+label{font-size:13px;font-weight:bold;display:block;margin:8px 0 5px}
+input,textarea,select{width:100%}
+.row{display:flex;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}
+.row img{width:70px;height:70px;object-fit:cover;border-radius:9px}
+.rowinfo{flex:1;min-width:0}
+.modal{display:none;position:fixed;inset:0;z-index:20;background:#0009;align-items:center;justify-content:center;padding:14px}
+.modal.open{display:flex}
+.modalbox{width:min(650px,100%);max-height:90vh;overflow:auto;background:white;border-radius:16px;padding:18px}
+.close{float:right;border:0;background:#edf2ed;border-radius:50%;width:34px;height:34px;font-size:20px}
+.detailpic{width:100%;height:270px;object-fit:cover;border-radius:10px;background:#eee}
+.pager{display:flex;justify-content:space-between;align-items:center;margin:18px 0;gap:10px}
+footer{background:#102e21;color:white;padding:24px 16px;margin-top:30px}
+.footerinner{max-width:1250px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+#toast{position:fixed;z-index:50;bottom:15px;left:50%;transform:translateX(-50%);background:#132c20;color:white;padding:12px 18px;border-radius:9px;display:none;max-width:90%;text-align:center}
+@media(max-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.heroArt{font-size:60px}}
+@media(max-width:560px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pic{height:135px}.body{padding:8px}.price{font-size:17px}.hero{padding:20px}.heroArt{display:none}.formgrid{grid-template-columns:1fr}.formgrid .full{grid-column:auto}.top{gap:8px}.hbtn{font-size:12px;padding:8px}}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="wrap">
+  <div class="top">
+   <div class="brand" onclick="home()"><div class="logo">❖</div><div>Emminerrr<br><small style="color:#efc46a">KASHMIR KART</small></div></div>
+   <form class="search" id="searchForm">
+    <input id="searchInput" placeholder="Search products, e.g. walnuts..." autocomplete="off">
+    <button type="submit">Search</button>
+   </form>
+   <button class="hbtn" onclick="page('wishlist')">♡ <span id="wishCount">0</span></button>
+   <button class="hbtn" onclick="page('cart')">🛒 <span id="cartCount">0</span></button>
+  </div>
+  <nav>
+   <button onclick="home()">Home</button>
+   <button onclick="category('All')">All products</button>
+   <button onclick="category('Food')">Food</button>
+   <button onclick="category('Handicrafts')">Handicrafts</button>
+   <button onclick="category('Clothing')">Clothing</button>
+   <button onclick="page('seller')">Sell products</button>
+   <button onclick="page('orders')">My orders</button>
+   <button onclick="page('import')">Import catalogue</button>
+   <button onclick="page('about')">About</button>
+  </nav>
+ </div>
+</header>
+
+<main>
+ <section id="homePage">
+  <div class="hero">
+   <div><span class="tag">KASHMIR LOCAL MARKETPLACE</span>
+    <h1>Discover Kashmir.<br>Shop local.</h1>
+    <p>Explore products, compare prices, save favourites and manage your cart in one place.</p>
+    <button class="btn" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Explore products →</button>
+   </div>
+   <div class="heroArt">🏔️ 🛍️</div>
+  </div>
+
+  <div class="head"><h2>Shop by category</h2></div>
+  <div class="categories" id="categories"></div>
+
+  <div class="head" id="catalogue">
+   <div><h2 id="catalogueTitle">All products</h2><div id="resultCount" class="muted"></div></div>
+   <div class="filters">
+    <select id="sortSelect" onchange="renderProducts()">
+     <option value="featured">Featured</option>
+     <option value="low">Price: low to high</option>
+     <option value="high">Price: high to low</option>
+     <option value="az">Name: A to Z</option>
+    </select>
+    <select id="pageSize" onchange="renderProducts()">
+     <option value="24">24 per page</option><option value="48">48 per page</option><option value="96">96 per page</option>
+    </select>
+   </div>
+  </div>
+  <div id="productGrid" class="grid"></div>
+  <div class="pager">
+   <button class="btn soft" onclick="changePage(-1)">← Previous</button>
+   <span id="pageInfo" class="muted"></span>
+   <button class="btn soft" onclick="changePage(1)">Next →</button>
+  </div>
+ </section>
+
+ <section id="cartPage" class="hidden">
+  <div class="head"><h2>🛒 Your cart</h2><button class="btn soft" onclick="home()">Continue shopping</button></div>
+  <div class="panel" id="cartContent"></div>
+ </section>
+
+ <section id="wishlistPage" class="hidden">
+  <div class="head"><h2>♡ Your wishlist</h2></div>
+  <div id="wishlistContent" class="grid"></div>
+ </section>
+
+ <section id="sellerPage" class="hidden">
+  <h2>Sell on Kashmir Kart</h2>
+  <p class="muted">Add your own product listing. Use a photo URL that you own or have permission to use.</p>
+  <form id="sellerForm" class="panel">
+   <div class="formgrid">
+    <div><label>Product name *</label><input name="name" required maxlength="120" placeholder="Product name"></div>
+    <div><label>Price in ₹ *</label><input name="price" type="number" min="1" max="10000000" required></div>
+    <div><label>Category</label><select name="category"><option>Food</option><option>Handicrafts</option><option>Clothing</option><option>Home</option><option>Beauty</option><option>Books</option><option>Electronics</option><option>Other</option></select></div>
+    <div><label>Shop name</label><input name="seller" maxlength="100" placeholder="Seller/shop name"></div>
+    <div class="full"><label>Image URL</label><input name="image" type="url" placeholder="https://..."></div>
+    <div class="full"><label>Description</label><textarea name="description" rows="3" maxlength="1000"></textarea></div>
+    <div class="full"><button class="btn" type="submit">Add product</button></div>
+   </div>
+  </form>
+  <div class="panel"><h3>My listings</h3><p class="muted">Listings are saved on this device in this demo.</p><button class="btn red" onclick="removeMyProducts()">Remove my added listings</button></div>
+ </section>
+
+ <section id="ordersPage" class="hidden">
+  <h2>My orders</h2><p class="muted">Orders saved on this device.</p><div class="panel" id="ordersContent"></div>
+ </section>
+
+ <section id="importPage" class="hidden">
+  <h2>Import product catalogue</h2>
+  <div class="panel">
+   <p>Import up to 10,000 product entries from a seller-provided CSV or JSON file. Imported data is not automatically verified as real.</p>
+   <label>Select CSV or JSON</label><input type="file" id="importFile" accept=".csv,.json,text/csv,application/json">
+   <p class="muted">CSV headers: name,price,category,image,description,seller. JSON: an array of objects with these fields.</p>
+   <div class="filters">
+    <button class="btn" onclick="importProducts()">Import products</button>
+    <button class="btn soft" onclick="exportProducts()">Export JSON</button>
+    <button class="btn soft" onclick="downloadTemplate()">Download CSV template</button>
+   </div>
+   <p id="importStatus" class="muted"></p>
+  </div>
+  <div class="panel"><h3>Catalogue statistics</h3><p id="catalogStats"></p><button class="btn red" onclick="clearImported()">Remove imported products</button></div>
+ </section>
+
+ <section id="aboutPage" class="hidden">
+  <h2>About Kashmir Kart</h2>
+  <div class="panel">
+   <p>Emminerrr Kashmir Kart is a marketplace website concept for discovering and listing products.</p>
+   <p><b>Important:</b> This single-file demo stores information in your browser. It does not yet have shared seller accounts, a live delivery service, verified sellers or online payment processing.</p>
+   <p>For real public sales, connect a secure backend, database, authentication and payment provider before accepting payments.</p>
+   <button class="btn dark" onclick="page('seller')">List a product</button>
+  </div>
+ </section>
+</main>
+
+<footer><div class="footerinner">
+ <div><b>❖ Emminerrr Kashmir Kart</b><p>Discover local products.</p></div>
+ <div><p><button class="btn" onclick="page('about')">About us</button></p><small>Product data should be supplied and verified by sellers.</small></div>
+</div></footer>
+
+<div id="productModal" class="modal" onclick="if(event.target===this)closeModal()">
+ <div class="modalbox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div>
+</div>
+<div id="toast"></div>
+
+<script>
+"use strict";
+
+const STORAGE_KEY="ekk_products_v1";
+const CART_KEY="ekk_cart_v1";
+const WISH_KEY="ekk_wish_v1";
+const ORDERS_KEY="ekk_orders_v1";
+const MAX_PRODUCTS=10000;
+
+const fallbackImage="data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(
+ '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400"><rect width="100%" height="100%" fill="#e8eee7"/><text x="50%" y="45%" font-size="48" text-anchor="middle" fill="#315b40">❖</text><text x="50%" y="65%" font-size="22" text-anchor="middle" fill="#315b40">Kashmir Kart</text></svg>'
+);
+
+const sampleProducts=[
+ {id:"sample1",name:"Kashmiri Walnut Pack",price:650,category:"Food",seller:"Sample listing",description:"Example walnut listing. Confirm origin, grade, quantity and price with the seller.",image:"https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=700&q=80",sample:true},
+ {id:"sample2",name:"Kashmiri Saffron",price:450,category:"Food",seller:"Sample listing",description:"Example saffron listing. Confirm authenticity, weight and price before purchase.",image:"https://images.unsplash.com/photo-1615485500704-8e990f9900f5?auto=format&fit=crop&w=700&q=80",sample:true},
+ {id:"sample3",name:"Kashmiri Papier Mache Craft",price:1200,category:"Handicrafts",seller:"Sample listing",description:"Example handicraft listing. Product details are illustrative, not verified.",image:"https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=700&q=80",sample:true},
+ {id:"sample4",name:"Traditional Wool Shawl",price:1800,category:"Clothing",seller:"Sample listing",description:"Example clothing listing. Confirm fabric, dimensions and origin with the seller.",image:"https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=700&q=80",sample:true},
+ {id:"sample5",name:"Kashmiri Dry Fruit Gift Box",price:950,category:"Food",seller:"Sample listing",description:"Example gift-box listing. Confirm contents and weight before purchase.",image:"https://images.unsplash.com/photo-1542990253-0b8be7f5a9a0?auto=format&fit=crop&w=700&q=80",sample:true},
+ {id:"sample6",name:"Handcrafted Wooden Decor",price:1400,category:"Home",seller:"Sample listing",description:"Example home decor listing. This is not a verified seller listing.",image:"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=700&q=80",sample:true},
+ {id:"sample7",name:"Kashmiri Tea Gift Pack",price:500,category:"Food",seller:"Sample listing",description:"Example tea listing. Confirm ingredients and package size with seller.",image:"https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=80",sample:true},
+ {id:"sample8",name:"Traditional Handwoven Carpet",price:6500,category:"Home",seller:"Sample listing",description:"Example carpet listing. Confirm material, size and origin before buying.",image:"https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=700&q=80",sample:true}
+];
+
+function loadJSON(key,fallback){
+ try{const v=JSON.parse(localStorage.getItem(key));return v===null?fallback:v}
+ catch(e){return fallback}
+}
+let importedProducts=loadJSON(STORAGE_KEY,[]);
+if(!Array.isArray(importedProducts)) importedProducts=[];
+let products=[...sampleProducts,...importedProducts].slice(0,MAX_PRODUCTS);
+let cart=loadJSON(CART_KEY,{});
+let wishlist=loadJSON(WISH_KEY,[]);
+let orders=loadJSON(ORDERS_KEY,[]);
+let currentCategory="All",query="",currentPage=1;
+
+const categories=[
+ {name:"All",icon:"🛍️"},{name:"Food",icon:"🥜"},{name:"Handicrafts",icon:"🎨"},
+ {name:"Clothing",icon:"🧣"},{name:"Home",icon:"🏠"},{name:"Beauty",icon:"🌿"},
+ {name:"Books",icon:"📚"},{name:"Electronics",icon:"📱"},{name:"Other",icon:"📦"}
+];
+
+function saveAll(){
+ try{
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(importedProducts));
+  localStorage.setItem(CART_KEY,JSON.stringify(cart));
+  localStorage.setItem(WISH_KEY,JSON.stringify(wishlist));
+  localStorage.setItem(ORDERS_KEY,JSON.stringify(orders));
+ }catch(e){toast("Browser storage is full. Export your catalogue and remove some products.");}
+}
+function toast(msg){
+ const el=document.getElementById("toast");el.textContent=msg;el.style.display="block";
+ clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.style.display="none",2600);
+}
+function money(n){return "₹"+Number(n||0).toLocaleString("en-IN")}
+function escapeHTML(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function safeImage(url){
+ try{const u=new URL(url);return ["https:","http:"].includes(u.protocol)?u.href:fallbackImage}
+ catch(e){return fallbackImage}
+}
+function imageTag(url,name,cls){
+ return '<img class="'+cls+'" loading="lazy" alt="'+escapeHTML(name)+'" src="'+escapeHTML(safeImage(url))+'" onerror="this.onerror=null;this.src=fallbackImage">';
+}
+function getProduct(id){return products.find(p=>String(p.id)===String(id))}
+function updateCounts(){
+ document.getElementById("cartCount").textContent=Object.values(cart).reduce((a,n)=>a+Number(n||0),0);
+ document.getElementById("wishCount").textContent=wishlist.length;
+}
+function renderCategories(){
+ document.getElementById("categories").innerHTML=categories.map(c=>
+ '<button class="cat '+(currentCategory===c.name?'active':'')+'" onclick="category(\''+c.name+'\')"><span>'+c.icon+'</span>'+c.name+'</button>'
+ ).join("");
+}
+function home(){
+ document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
+ document.getElementById("homePage").classList.remove("hidden");
+ renderProducts();window.scrollTo({top:0,behavior:"smooth"});
+}
+function page(name){
+ document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
+ const el=document.getElementById(name+"Page");
+ if(!el){home();return}
+ el.classList.remove("hidden");
+ if(name==="cart")renderCart();
+ if(name==="wishlist")renderWishlist();
+ if(name==="orders")renderOrders();
+ if(name==="import")renderStats();
+ if(name==="seller")document.getElementById("sellerForm").reset();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function category(name){
+ currentCategory=name;currentPage=1;renderCategories();home();
+ document.getElementById("catalogueTitle").textContent=name==="All"?"All products":name;
+ document.getElementById("catalogue").scrollIntoView({behavior:"smooth"});
+}
+function searchProducts(){
+ query=document.getElementById("searchInput").value.trim().toLowerCase();
+ currentPage=1;currentCategory="All";renderCategories();home();
+ document.getElementById("catalogueTitle").textContent=query?'Search: "'+document.getElementById("searchInput").value.trim()+'"':"All products";
+ document.getElementById("catalogue").scrollIntoView({behavior:"smooth"});
+}
+document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();searchProducts()});
+document.getElementById("searchInput").addEventListener("input",()=>{
+ if(document.getElementById("searchInput").value.trim()===""){
+  query="";currentPage=1;renderProducts();
+ }
+});
+
+function filteredProducts(){
+ let arr=products.filter(p=>{
+  const categoryOK=currentCategory==="All"||p.category===currentCategory;
+  const text=[p.name,p.category,p.description,p.seller].join(" ").toLowerCase();
+  return categoryOK&&(!query||text.includes(query));
+ });
+ const sort=document.getElementById("sortSelect").value;
+ if(sort==="low")arr.sort((a,b)=>Number(a.price)-Number(b.price));
+ if(sort==="high")arr.sort((a,b)=>Number(b.price)-Number(a.price));
+ if(sort==="az")arr.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+ return arr;
+}
+function renderProducts(){
+ const arr=filteredProducts();
+ const size=Number(document.getElementById("pageSize").value)||24;
+ const pages=Math.max(1,Math.ceil(arr.length/size));
+ currentPage=Math.min(currentPage,pages);
+ const start=(currentPage-1)*size;
+ document.getElementById("resultCount").textContent=arr.length+" product(s) found";
+ document.getElementById("pageInfo").textContent="Page "+currentPage+" of "+pages;
+ const grid=document.getElementById("productGrid");
+ if(!arr.length){
+  grid.innerHTML='<div class="empty" style="grid-column:1/-1"><h3>No products found</h3><p>Try another search or category.</p><button class="btn dark" onclick="resetSearch()">Show all products</button></div>';
+  return;
+ }
+ grid.innerHTML=arr.slice(start,start+size).map(p=>productCard(p)).join("");
+}
+function productCard(p){
+ const wished=wishlist.includes(p.id);
+ return '<article class="card">'+
+ '<div onclick="openProduct(\''+escapeHTML(p.id)+'\')">'+imageTag(p.image,p.name,"pic")+'</div>'+
+ '<div class="body"><div class="tag">'+escapeHTML(p.category||"Other")+(p.sample?" · Sample":"")+'</div>'+
+ '<div class="pname" onclick="openProduct(\''+escapeHTML(p.id)+'\')">'+escapeHTML(p.name)+'</div>'+
+ '<div class="price">'+money(p.price)+'</div>'+
+ '<div class="muted">'+escapeHTML(p.seller||"Seller not specified")+'</div>'+
+ '<div class="actions"><button class="btn dark" onclick="addCart(\''+escapeHTML(p.id)+'\')">Add to cart</button>'+
+ '<button class="btn soft heart" aria-label="Wishlist" onclick="toggleWish(\''+escapeHTML(p.id)+'\')">'+(wished?"♥":"♡")+'</button></div>'+
+ '<button class="btn soft" style="width:100%;margin-top:7px" onclick="openProduct(\''+escapeHTML(p.id)+'\')">View details</button>'+
+ '</div></article>';
+}
+function resetSearch(){
+ query="";currentCategory="All";currentPage=1;
+ document.getElementById("searchInput").value="";
+ document.getElementById("catalogueTitle").textContent="All products";
+ renderCategories();home();
+}
+function changePage(n){
+ const size=Number(document.getElementById("pageSize").value)||24;
+ const pages=Math.max(1,Math.ceil(filteredProducts().length/size));
+ currentPage=Math.max(1,Math.min(pages,currentPage+n));renderProducts();
+ document.getElementById("catalogue").scrollIntoView({behavior:"smooth"});
+}
+function openProduct(id){
+ const p=getProduct(id);if(!p){toast("Product not found");return}
+ document.getElementById("modalContent").innerHTML=
+ imageTag(p.image,p.name,"detailpic")+
+ '<h2>'+escapeHTML(p.name)+'</h2>'+
+ '<div class="price">'+money(p.price)+'</div>'+
+ '<p><b>Category:</b> '+escapeHTML(p.category||"Other")+'</p>'+
+ '<p><b>Seller:</b> '+escapeHTML(p.seller||"Not specified")+'</p>'+
+ '<p>'+escapeHTML(p.description||"No description provided.")+'</p>'+
+ (p.sample?'<p class="muted">Sample listing: details, seller and price are not independently verified.</p>':'')+
+ '<div class="actions"><button class="btn dark" onclick="addCart(\''+escapeHTML(p.id)+'\');closeModal()">Add to cart</button>'+
+ '<button class="btn soft" onclick="toggleWish(\''+escapeHTML(p.id)+'\');closeModal()">♡ Wishlist</button></div>';
+ document.getElementById("productModal").classList.add("open");
+}
+function closeModal(){document.getElementById("productModal").classList.remove("open")}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+function addCart(id){
+ if(!getProduct(id)){toast("Product unavailable");return}
+ cart[id]=(Number(cart[id])||0)+1;saveAll();updateCounts();toast("Added to cart");
+}
+function toggleWish(id){
+ if(!getProduct(id))return;
+ if(wishlist.includes(id)){wishlist=wishlist.filter(x=>x!==id);toast("Removed from wishlist")}
+ else{wishlist.push(id);toast("Saved to wishlist")}
+ saveAll();updateCounts();renderProducts();
+ if(!document.getElementById("wishlistPage").classList.contains("hidden"))renderWishlist();
+}
+function renderCart(){
+ const el=document.getElementById("cartContent");
+ const entries=Object.entries(cart).filter(([id,q])=>getProduct(id)&&Number(q)>0);
+ if(!entries.length){el.innerHTML='<div class="empty"><h3>Your cart is empty</h3><button class="btn dark" onclick="home()">Explore products</button></div>';return}
+ let total=0;
+ let html="";
+ entries.forEach(([id,q])=>{
+  const p=getProduct(id);const sub=Number(p.price)*Number(q);total+=sub;
+  html+='<div class="row">'+imageTag(p.image,p.name,"")+
+  '<div class="rowinfo"><b>'+escapeHTML(p.name)+'</b><div>'+money(p.price)+' each</div>'+
+  '<div class="filters" style="margin-top:8px"><button class="btn soft" onclick="changeQty(\''+escapeHTML(id)+'\',-1)">−</button><span>'+q+'</span><button class="btn soft" onclick="changeQty(\''+escapeHTML(id)+'\',1)">+</button><button class="btn red" onclick="removeCart(\''+escapeHTML(id)+'\')">Remove</button></div></div>'+
+  '<b>'+money(sub)+'</b></div>';
+ });
+ html+='<h2>Total: '+money(total)+'</h2><p class="muted">This demo does not charge money or arrange delivery.</p><button class="btn dark" onclick="checkout()">Place demo order</button>';
+ el.innerHTML=html;
+}
+function changeQty(id,delta){
+ if(!cart[id])return;
+ cart[id]=Number(cart[id])+delta;
+ if(cart[id]<=0)delete cart[id];
+ saveAll();updateCounts();renderCart();
+}
+function removeCart(id){delete cart[id];saveAll();updateCounts();renderCart()}
+function checkout(){
+ const items=Object.entries(cart).filter(([id,q])=>getProduct(id)&&Number(q)>0);
+ if(!items.length){toast("Your cart is empty");return}
+ const total=items.reduce((sum,[id,q])=>sum+Number(getProduct(id).price)*Number(q),0);
+ const order={id:"KK"+Date.now(),date:new Date().toLocaleString(),total,
+ items:items.map(([id,q])=>({name:getProduct(id).name,price:Number(getProduct(id).price),quantity:Number(q)}))};
+ orders.unshift(order);cart={};saveAll();updateCounts();renderOrders();page("orders");
+ toast("Demo order saved on this device");
+}
+function renderWishlist(){
+ const list=wishlist.map(getProduct).filter(Boolean);
+ document.getElementById("wishlistContent").innerHTML=list.length?list.map(productCard).join(""):'<div class="empty" style="grid-column:1/-1">Your wishlist is empty.</div>';
+}
+function renderOrders(){
+ const el=document.getElementById("ordersContent");
+ if(!orders.length){el.innerHTML='<div class="empty">No orders yet.</div>';return}
+ el.innerHTML=orders.map(o=>'<div class="panel"><b>Order '+escapeHTML(o.id)+'</b><p class="muted">'+escapeHTML(o.date)+'</p>'+
+ (o.items||[]).map(i=>'<div>'+escapeHTML(i.name)+' × '+i.quantity+' — '+money(i.price*i.quantity)+'</div>').join("")+
+ '<h3>Total: '+money(o.total)+'</h3><span class="tag">Demo order · Not a real shipment</span></div>').join("");
+}
+
+document.getElementById("sellerForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const f=new FormData(e.target);
+ const name=String(f.get("name")||"").trim();
+ const price=Number(f.get("price"));
+ if(!name||!Number.isFinite(price)||price<=0){toast("Enter a valid name and price");return}
+ if(products.length>=MAX_PRODUCTS){toast("Catalogue limit reached. Export products first.");return}
+ const p={id:"seller_"+Date.now()+"_"+Math.random().toString(36).slice(2,7),
+ name,price,category:String(f.get("category")||"Other"),
+ seller:String(f.get("seller")||"").trim()||"Seller listing",
+ image:safeImage(String(f.get("image")||"")),
+ description:String(f.get("description")||"").trim(),sample:false,source:"seller"};
+ importedProducts.push(p);products=[...sampleProducts,...importedProducts].slice(0,MAX_PRODUCTS);
+ saveAll();updateCounts();e.target.reset();toast("Product added on this device");home();
+});
+
+function removeMyProducts(){
+ if(!confirm("Remove all products added through the seller form on this device?"))return;
+ importedProducts=importedProducts.filter(p=>p.source!=="seller");
+ rebuildProducts();saveAll();renderProducts();toast("Your added listings were removed");
+}
+function rebuildProducts(){products=[...sampleProducts,...importedProducts].slice(0,MAX_PRODUCTS)}
+function renderStats(){
+ document.getElementById("catalogStats").textContent=
+ "Total products: "+products.length+" | Imported/local products: "+importedProducts.length+" | Sample products: "+sampleProducts.length;
+}
+function parseCSV(text){
+ const lines=text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(l=>l.trim());
+ if(!lines.length)return [];
+ function splitLine(line){
+  const out=[];let value="",quoted=false;
+  for(let i=0;i<line.length;i++){
+   const c=line[i];
+   if(c==='"'&&quoted&&line[i+1]==='"'){value+='"';i++}
+   else if(c==='"'){quoted=!quoted}
+   else if(c===","&&!quoted){out.push(value);value=""}
+   else value+=c;
+  }
+  out.push(value);return out;
+ }
+ const headers=splitLine(lines[0]).map(h=>h.trim().toLowerCase());
+ return lines.slice(1).map(line=>{
+  const vals=splitLine(line);const o={};
+  headers.forEach((h,i)=>o[h]=(vals[i]||"").trim());
+  return o;
+ });
+}
+async function importProducts(){
+ const file=document.getElementById("importFile").files[0];
+ const status=document.getElementById("importStatus");
+ if(!file){status.textContent="Choose a CSV or JSON file first.";return}
+ try{
+  const text=await file.text();
+  let data=file.name.toLowerCase().endsWith(".json")?JSON.parse(text):parseCSV(text);
+  if(!Array.isArray(data))throw new Error("JSON must contain an array of products.");
+  const incoming=[];
+  for(const r of data){
+   const name=String(r.name||r.title||"").trim();
+   const price=Number(String(r.price||"").replace(/[₹,\s]/g,""));
+   if(!name||!Number.isFinite(price)||price<=0)continue;
+   incoming.push({id:"imp_"+Date.now()+"_"+incoming.length+"_"+Math.random().toString(36).slice(2,6),
+    name:name.slice(0,120),price,category:String(r.category||"Other").slice(0,60),
+    image:safeImage(String(r.image||r.imageurl||"")),
+    description:String(r.description||"").slice(0,1000),
+    seller:String(r.seller||"Imported listing").slice(0,100),
+    source:"import",sample:false});
+   if(incoming.length>=MAX_PRODUCTS)break;
+  }
+  const room=Math.max(0,MAX_PRODUCTS-sampleProducts.length-importedProducts.length);
+  const accepted=incoming.slice(0,room);
+  importedProducts.push(...accepted);rebuildProducts();saveAll();renderStats();renderProducts();
+  status.textContent="Imported "+accepted.length+" product(s). Skipped invalid rows: "+(data.length-accepted.length)+".";
+  toast("Catalogue import finished");
+ }catch(err){status.textContent="Import failed: "+err.message}
+}
+function exportProducts(){
+ const blob=new Blob([JSON.stringify(products,null,2)],{type:"application/json"});
+ downloadBlob(blob,"kashmir-kart-products.json");
+}
+function downloadTemplate(){
+ const csv='name,price,category,image,description,seller\n"Kashmiri walnuts",650,Food,https://example.com/photo.jpg,"Enter verified details","Seller name"\n';
+ downloadBlob(new Blob([csv],{type:"text/csv"}),"kashmir-kart-template.csv");
+}
+function downloadBlob(blob,name){
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");
+ a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function clearImported(){
+ if(!confirm("Remove all imported products and seller listings from this device?"))return;
+ importedProducts=[];rebuildProducts();saveAll();renderStats();renderProducts();toast("Imported listings cleared");
+}
+renderCategories();updateCounts();renderProducts();renderStats();
+</script>
+</body>
+</html>
